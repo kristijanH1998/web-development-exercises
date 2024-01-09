@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <p id="p1"></p>
+    <!-- <p id="p1"></p>
     <p id="p2"></p>
     <p id="p3"></p>
     <label id="myLabel">Enter your name: </br>
@@ -45,8 +44,32 @@
     <button id="myButton1">submit</button>
     <label id="myRectangle"></label>
 
-    <label id="myLabel1"></label>
+    <label id="myLabel1"></label> -->
+
+    <!-- <h1>Number Guessing Game</h1>
+    <p>Pick a number between 1 and 10</p>
+    <label>Enter a guess</label>
+    <input id="guessField">
+    <input type="submit" name="submitBtn">-->
+
+    <label>Enter a temperature:</label><br>
+    <input type="text" id="textBox1"><br>
+
+    <label>convert to:</label><br>
+    <input type="radio" id="cButton" name="unit">
+    <label>Celsius</label><br>
+    <input type="radio" id="fButton" name="unit">
+    <label>Fahrenheit</label><br>
+    <button type="button" id="submitButton">submit</button><br>
+    <label id="tempLabel"></label>
+    <label id="myLabel"></label><br>
+
+    <label id="newLbl">0</label><br>
+    <button id="decreaseButton" onclick="decreaseCount()">decrease</button>
+    <button id="increaseButton" onclick="increaseCount()">increase</button>
+
 
     <script src="index.js"></script>
+    
 </body>
 </html>
