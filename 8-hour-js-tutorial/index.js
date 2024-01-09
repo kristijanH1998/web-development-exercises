@@ -165,9 +165,163 @@ console.log(letter);
 //     console.log("You are a child!");
 // }
 
-let online = true;
-if(online){
-    console.log("You are online!");
-} else {
-    console.log("You are offline!");
+// let online = true;
+// if(online){
+//     console.log("You are online!");
+// } else {
+//     console.log("You are offline!");
+// }
+document.getElementById("myButton1").onclick = function() {
+    const visaBtn = document.getElementById("visaBtn");
+    const mastercardBtn = document.getElementById("mastercardBtn");
+    const paypalBtn = document.getElementById("paypalBtn");
+
+    if(document.getElementById("myCheckBox1").checked){
+        console.log("You are subscribed!");
+    } else {
+        console.log("You are not subscribed!");
+    }
+    if(visaBtn.checked){
+        console.log("You are paying with Visa");
+    } else if (mastercardBtn.checked){
+        console.log("You are paying with MasterCard");
+    } else if (paypalBtn.checked) {
+        console.log("You are paying with PayPal");
+    } else {
+        console.log("You must select a payment type.");
+    }
 }
+
+let grade = "A";
+switch(grade){
+    case "A":
+        console.log("You did great!");
+        break;
+    case "B":
+        console.log("You did good!");
+        break;
+    case "C":
+        console.log("You did okay!");
+        break;
+    case "D":
+        console.log("You passed ... barely!");
+        break;
+    case "F":
+        console.log("You failed!");
+        break;
+    default:
+        console.log(grade, "is not a letter grade!");
+}
+
+let temp = 15;
+let sunny = false;
+if(temp > 0 && temp < 30 && sunny){
+    console.log("The weather is good");
+} else {
+    console.log("The weather is bad");
+}
+
+let temp2 = 15;
+let sunny2 = true;
+if(!(temp > 0)){
+    console.log("It's cold outside");
+} else {
+    console.log("It's warm outside");
+}
+if(!sunny2){
+    console.log("It's cloudy outside");
+} else {
+    console.log("It's sunny outside");
+}
+
+// let userName3 = "";
+// while(userName3 == "" || userName3 == null){
+//     userName3 = window.prompt("Enter your name");
+// }
+// console.log("Hello", userName3)
+
+// for(let i = 1; i <= 10; i+=2){
+//     console.log(i);
+// }
+for(let i = 1; i <= 20; i++){
+    if(i == 13){
+        break;
+    }
+    if(i == 10){
+        continue;
+    }
+    console.log(i);
+}
+// let symbol = window.prompt("Enter a symbol to use");
+// let rows = window.prompt("Enter number of rows");
+// let columns = window.prompt("Enter number of columns");
+
+// for(let i = 1; i <= rows; i += 1){
+//     for(let j = 1; j <= columns; j += 1){
+//         document.getElementById("myRectangle").innerHTML += symbol;
+//     }
+//     document.getElementById("myRectangle").innerHTML += "<br>";
+// }
+
+// function startProgram() {
+//     let userName4 = "Kristijan";
+//     let age4 = 25;
+//     happyBirthday(userName4, age4);
+// }
+
+// function happyBirthday(userName4, age4) {
+//     console.log("Happy", userName4);
+//     console.log("Happy");
+//     console.log("Happy", age4);
+// }
+// startProgram();
+
+// let area;
+// let width;
+// let height;
+
+// width = window.prompt("Enter width");
+// height = window.prompt("Enter height");
+// area = getArea(width, height);
+// console.log("The area is: ", area);
+// function getArea(width, height) {
+//     let result = width * height;
+//     return result;
+// }
+
+let adult = checkAge(14);
+console.log(adult);
+function checkAge(age){
+    return age >= 18 ? true : false;
+}
+function checkWinner(win){
+    win ? console.log("You win") : console.log("You lose");
+}
+checkWinner(true);
+
+let glblvar = "Kristijan";
+doSomething();
+function doSomething(){
+    for(var i = 1; i <= 3; i += 1){
+        console.log(i);
+    }
+    console.log(i);
+}
+
+let userName5 = "Kristijan";
+let items = 3;
+let total = 75;
+
+// console.log("Hello", userName);
+// console.log("You have", items, "items in your cart.");
+// console.log("Your total is $", total);
+
+console.log(`Hello ${userName5}`);
+console.log(`You have ${items} items in your cart`);
+console.log(`Your total is $${total}`);
+
+let text = `Hello ${userName5} <br> You have ${items} items in your cart <br>
+Your total is $${total}`;
+console.log(text);
+
+document.getElementById("myLabel").innerHTML = text;
