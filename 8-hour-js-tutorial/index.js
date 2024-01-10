@@ -828,3 +828,119 @@ let cards2 = [new Card("A", "Hearts")
 console.log(cards2[0].value + cards2[0].suit);
 cards2.forEach(card => console.log(`${card.value} ${card.suit}`));
 
+// try {
+//     let x = window.prompt("Enter a #");
+//     x = Number(x);   
+//     if(isNaN(x)) throw "That wasn't a number!";
+//     if(x == "") throw "That was empty!";
+//     console.log(`${x} is a number.`);
+// } catch(error){
+//     console.log(error);
+// } finally{
+//     console.log("This always executes");
+// }
+
+// let item2 = "cryptocurrency";
+// let price2 = 420.69;
+// let timer1 = setTimeout(firstMessage, 3000);
+// let timer2 = setTimeout(secondMessage, 3000);
+// let timer3 = setTimeout(thirdMessage, 3000);
+
+// function firstMessage(item, price){
+//     alert(`Buy this ${item2} course for ${price2}!`);
+// }
+// function secondMessage(){
+//     alert(`This is not a scam.`);
+// }
+// function thirdMessage(){
+//     alert(`Do it!`);
+// }
+// document.getElementById("myButton").onclick = function (){
+//     clearTimeout(timer1);
+//     clearTimeout(timer2);
+//     clearTimeout(timer3);
+//     alert("Thanks for buying!");
+// }
+
+// let count1 = 0;
+// let max = window.prompt("Count up to what number?");
+// max = Number(max);
+// const myTimer = setInterval(countUp, 1000);
+// function countUp(){
+//     count1+=1;
+//     console.log(count1);
+//     if(count1>=max){
+//         clearInterval(myTimer);
+//     }
+// }
+
+//let date = new Date(2023, 0, 1, 2, 3, 4, 5);
+//let date = new Date("January 1, 2023 00:00:00");
+let date = new Date();
+let year = date.getFullYear();
+let dayOfMonth = date.getDate();
+let dayOfWeek = date.getDay();
+let month = date.getMonth();
+let minutes = date.getMinutes();
+let seconds = date.getSeconds();
+let ms = date.getMilliseconds();
+date.setFullYear(2024);
+date.setMonth(11);
+date.setDate(31);
+date.setHours(24);
+date.setMinutes(11);
+date.setSeconds(5);
+date.setMilliseconds(30);
+
+date = date.toLocaleString();
+console.log(date);
+document.getElementById("myLabel2").innerHTML = formatTime(new Date());
+
+function formatDate(date){
+    let year = date.getFullYear();
+    let month = date.getMonth();
+    let day =  date.getDate();
+    return `${month}/${day}/${year}`;
+}
+function formatTime(date){
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    let amOrPm = hours >= 12 ? "pm" : "am";
+    hours = (hours % 12) || 12;
+    return `${hours}/${minutes}/${seconds} ${amOrPm}`;
+}
+
+const myLabel3 = document.getElementById("myLabel3");
+update();
+setInterval(update, 1000);
+function update(){
+    let date = new Date();
+    myLabel3.innerHTML = formatTime(date);
+
+    function formatTime(){
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        let amorpm = hours >= 12 ? "pm" : "am";
+        hours = (hours % 12) || 12;
+        hours = formatZeroes(hours);
+        minutes = formatZeroes(minutes);
+        seconds = formatZeroes(seconds);
+        return `${hours}:${minutes}:${seconds} ${amorpm}`;
+    }
+    function formatZeroes(time){
+        time = time.toString();
+        return time.length < 2 ? "0" + time : time;
+    }
+}
+//asynchronous code example:
+// console.log("Start");
+// setTimeout(() => console.log("This is asynchronous"), 5000);
+// console.log("End");
+
+console.time("Response time");
+//alert("Click the OK button!");
+setTimeout(() => console.log("Hello!"), 3000);
+console.timeEnd("Response time");
+
