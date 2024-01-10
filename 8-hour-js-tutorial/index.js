@@ -1,3 +1,6 @@
+//import {PI2, getCircumference2, getArea2} from "./math_util.js";
+import * as MathUtil from "./math_util.js";
+
 // console.log("I like pizza!");
 // console.log("It's really good!")
 //window.alert("I really love pizza!");
@@ -622,8 +625,8 @@ document.getElementById("decreaseButton").onclick = function(){
  car.drive();
  car2.brake();
 
- this.name = "myCoolWindow";
- console.log(this.name);
+ //this.name = "myCoolWindow";
+ //console.log(this.name);
 
  class Player{
     score = 0;
@@ -939,8 +942,117 @@ function update(){
 // setTimeout(() => console.log("This is asynchronous"), 5000);
 // console.log("End");
 
-console.time("Response time");
-//alert("Click the OK button!");
-setTimeout(() => console.log("Hello!"), 3000);
-console.timeEnd("Response time");
+// console.time("Response time");
+// //alert("Click the OK button!");
+// setTimeout(() => console.log("Hello!"), 3000);
+// console.timeEnd("Response time");
+
+// const promise = new Promise((resolve, reject) => {
+//     let fileLoaded = true;
+//     if(fileLoaded){
+//         resolve("File loaded");
+//     } else {
+//         reject("File NOT loaded");
+//     }
+// });
+// promise.then(value => console.log(value)).catch(error => console.log(error));
+
+// const wait = time => new Promise(resolve => {
+//     setTimeout(resolve, time);
+// });
+
+// wait(3000).then(() => console.log("Thanks for waiting"));
+
+async function loadFile(){
+    let fileLoaded = false;
+    if(fileLoaded){
+        return("File loaded");
+    } else {
+        return("File NOT loaded");
+    }
+}
+
+// function loadFile(){
+//     let fileLoaded = false;
+//     if(fileLoaded){
+//         return Promise.resolve("File loaded");
+//     } else {
+//         return Promise.reject("File NOT loaded");
+//     }
+// }
+
+// loadFile().then(value => console.log(value)).catch(error => console.log(error));
+
+async function startProcess(){
+    try {
+        let message = await loadFile();
+        console.log(message);
+    } catch(error){
+        console.log(error);
+    }
+}
+startProcess();
+
+console.log(MathUtil.PI2);
+let circumference = MathUtil.getCircumference2(10);
+console.log(circumference);
+let area2 = MathUtil.getArea2(10);
+console.log(area2);
+
+console.log(document);
+//console.dir(document);
+console.log(document.title);
+console.log(document.URL);
+document.title = "Some title";
+//document.location = "http://www.google.com";
+document.body.style.backgroundColor = "skyblue";
+
+let element = document.getElementById("myTitle");
+element.style.backgroundColor = "lightgreen";
+let fruits1 = document.getElementsByName("fruits");
+console.log(fruits1[0]);
+
+fruits1.forEach(fruit => {
+    if(fruit.checked){
+        console.log(fruit.value);
+    }
+})
+
+let vegetables1 = document.getElementsByTagName("li");
+vegetables1[2].style.backgroundColor = "lightgreen";
+
+let desserts = document.getElementsByClassName("desserts");
+desserts[0].style.backgroundColor = "yellow";
+
+let element1 = document.querySelector("#myTitle");
+element.style.backgroundColor = "yellow";
+
+let elements = document.querySelectorAll("[for]");
+elements.forEach(element => {
+    element.style.backgroundColor = "lightgreen";
+})
+
+let element2 = document.querySelector("#vegetables2");
+let children = Array.from(element2.children);
+children.forEach(child => child.style.backgroundColor = "lightgreen");
+
+// const nameTag = document.createElement("h1");
+// nameTag.textContent = window.prompt("Enter your name.");
+// document.body.append(nameTag);
+
+const myList = document.querySelector("#fruits2");
+const listItem = document.createElement("li");
+listItem.textContent = "mango";
+//myList.append(listItem);
+myList.insertBefore(listItem, myList.getElementsByTagName("li")[2]);
+
+const title = document.getElementById("myTitle1");
+title.style.backgroundColor = "rgb(50,200,250)";
+title.style.color = "purple";
+title.style.fontFamily = "consolas";
+title.style.textAlign = "center";
+title.style.border = "2px solid";
+title.style.display = "block";
+
+
 
