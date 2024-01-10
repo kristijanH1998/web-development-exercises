@@ -537,3 +537,294 @@ document.getElementById("decreaseButton").onclick = function(){
 //     document.getElementById("newLbl").innerHTML = count;
 // }
 
+ const greeting = userName => console.log(`hello ${userName}`);
+ greeting("Kristijan");
+
+ const percent = (x, y) => x / y * 100;
+ console.log(`${percent(75,100)}%`);
+
+ let grades2 = [100, 50, 90, 60, 80, 70];
+ grades2.sort((x,y) =>  y - x);
+ grades2.forEach((element) => console.log(element));
+ 
+ let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];  
+ shuffle(cards);
+ console.log(...cards);
+ cards.forEach(card => console.log(card));
+ function shuffle (array){
+    let currentIndex = array.length;
+    while (currentIndex != 0){
+        let randomIndex = Math.floor(Math.random() * array.length);
+        currentIndex-=1;
+        let temp = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temp;
+    }
+    return array;
+ }
+ let userName2 = "Kristijan";
+ let userInbox = 0;
+ login();
+ function login(){
+    displayUserName();
+    displayUserInbox();
+    function displayUserName(){
+        console.log(`Welcome ${userName2}`);
+     }
+     function displayUserInbox(){
+        console.log(`You have ${userInbox} new messages`);
+     }
+ }
+  
+ const store = new Map([
+    ["t-shirt", 20],
+    ["jeans", 30],
+    ["socks", 10],
+    ["underwear", 50]
+ ]);
+ let shoppingCart = 0;
+ shoppingCart += store.get("t-shirt");
+ shoppingCart += store.get("underwear");
+ console.log(shoppingCart);
+ store.set("hat", 40);
+ store.delete("hat");
+ console.log(store.has("hat"));
+ store.forEach((value, key) => console.log(`${key} $${value}`));
+ console.log(store.size);
+
+ const car = {
+    model:"Mustang",
+    color:"Red",
+    year: 2023,
+
+    drive: function(){
+        console.log(`You drive the ${this.model}`);
+    },
+    brake: function(){
+        console.log("You step on a brake");
+    }
+ }
+ const car2 = {
+    model:"Corvette",
+    color:"Blue",
+    year: 2024,
+
+    drive: function(){
+        console.log(`You drive the ${this.model}`);
+    },
+    brake: function(){
+        console.log("You step on a brake");
+    }
+ }
+ console.log(car2.model);
+ console.log(car.color);
+ console.log(car.year);
+ car.drive();
+ car2.brake();
+
+ this.name = "myCoolWindow";
+ console.log(this.name);
+
+ class Player{
+    score = 0;
+
+    pause(){
+        console.log("You paused the game.");
+    }
+    exit(){
+        console.log("You exited the game.");
+    }
+ }
+
+ const player1 = new Player();
+ const player2 = new Player();
+
+ player1.score += 1;
+ player1.exit();
+ console.log(player1.score);
+ console.log(player2.score);
+
+ class Student {
+    constructor(name, age, gpa){
+        this.name = name;
+        this.age = age;
+        this.gpa = gpa;
+    }
+    study(){
+        console.log(`${this.name} is studying`);
+    }
+ }
+
+ const student1 = new Student("Spongebob", 30, 3.2);
+ const student2 = new Student("Patrick", 30, 3.2);
+
+ console.log(student1);
+ student1.study();
+ student2.study();
+
+ Math.round();
+ class Car {
+    static numberOfCars = 0;
+    constructor(model){
+        this.model = model;
+        Car.numberOfCars += 1;
+    }
+    static startRace(){
+        console.log("3...2..1..GO!");
+    }
+
+ }
+
+ const car1 = new Car("Mustang");
+ const car3 = new Car("Corvette");
+ const car4 = new Car("BMW");
+ const car5 = new Car("Ferrari");
+
+console.log(Car.numberOfCars);
+console.log(Car.numberOfCars);
+console.log(Car.numberOfCars);
+Car.startRace();
+
+class Animal {
+    alive = true;
+    eat(){
+        console.log(`This ${this.name} is eating`);
+    }
+    sleep(){
+        console.log(`This ${this.name} is sleeping`);
+    }
+    constructor(name, age){
+        this.name = name;
+        this.age = age;
+    }
+}
+
+class Rabbit extends Animal{
+    name = "rabbit";
+    run(){
+        console.log(`This ${this.name} is running`);
+    }
+    constructor (name,age,runSpeed){
+        super(name, age);
+        this.runSpeed = runSpeed;
+    }
+}
+class Fish extends Animal{
+    name = "fish";
+    swim(){
+        console.log(`This ${this.name} is swimming`);
+    }
+    constructor (name,age,swimSpeed){
+        super(name, age);
+        this.runSpeed = swimSpeed;
+    }
+}
+class Hawk extends Animal{
+    name = "hawk";
+    fly(){
+        console.log(`This ${this.name} is flying`);
+    }
+    constructor (name,age,flySpeed){
+        super(name, age);
+        this.runSpeed = flySpeed;
+    }
+}
+const rabbit = new Rabbit();
+const fish = new Fish();
+const hawk = new Hawk();
+console.log(rabbit.alive);
+rabbit.eat();
+hawk.sleep();
+console.log(fish.alive);
+
+const rabbit2 = new Rabbit("rabbit", 1, 40);
+const fish2 = new Fish("fish", 2, 80);
+const hawk2 = new Hawk("hawk", 3, 200);
+
+console.log(rabbit2.name);
+console.log(rabbit2.age);
+console.log(rabbit2.runSpeed);
+console.log(fish2.name);
+console.log(fish2.age);
+console.log(fish2.runSpeed);
+
+class Car2{
+    constructor(power){
+        this._power = power;
+        this._gas = 25;
+    }
+    get power(){
+        return `${this._power}hp`;
+    }
+    get gas(){
+        return `${this._gas}l (${this._gas / 50 * 100}%)`;
+    }
+    set gas(value){
+        if(value > 50){
+            value = 50;
+        } else if (value < 0){
+            value = 0;
+        }
+        this._gas = value;
+    }
+}
+let car6 = new Car2(400);
+car6.gas = 400;
+console.log(car6.power);
+console.log(car6.gas);
+
+class Car3 {
+    constructor(model, year, color){
+        this.model = model;
+        this.year = year;
+        this.color = color;
+    }
+    drive(){
+        console.log(`You drive the ${this.model}!`);
+    }
+}
+const car7 = new Car3("Mustang", 2023, "red");
+const car8 = new Car3("Corvette", 2024, "blue");
+const car9 = new Car3("Lambo", 2022, "yellow");
+const car10 = new Car3("Ferrari", 2025, "white");
+
+function displayInfo(car){
+    console.log(car.model);
+    console.log(car.year);
+    console.log(car.color);
+}
+displayInfo(car7);
+function changeColor(car, color){
+    car.color = color;
+}
+changeColor(car8, "purple");
+console.log(car8);
+
+const cars = [car7, car8, car9, car10];
+console.log(cars[0].model);
+startRace(cars);
+
+function startRace(cars){
+    for(const car of cars){
+        car.drive();
+    }
+}
+
+class Card{
+    constructor(value, suit){
+        this.value = value;
+        this.suit = suit;
+    }
+}
+
+let cards2 = [new Card("A", "Hearts")
+,new Card("A", "Spades")
+,new Card("A", "Diamons")
+,new Card("A", "Clubs")
+,new Card("2", "Hearts")
+,new Card("2", "Spades")
+,new Card("2", "Diamons")
+,new Card("2", "Clubs")];
+console.log(cards2[0].value + cards2[0].suit);
+cards2.forEach(card => console.log(`${card.value} ${card.suit}`));
+
