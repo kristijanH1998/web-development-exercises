@@ -1067,9 +1067,179 @@ function doSth(){
 const element4 = document.getElementById("mydiv");
 element4.onmouseover = dosth;
 element4.onmouseout = dosthelse;
+element4.onmousedown = dosthelse;
+element4.onmouseup = dosth;
 function dosth(){
     element4.style.backgroundColor = "red";
 }
 function dosthelse(){
     element4.style.backgroundColor = "lightgreen";
 }
+
+const innerDiv = document.getElementById("innerDiv");
+const outerDiv = document.getElementById("outerDiv");
+
+innerDiv.addEventListener("mouseover", changeRed);
+innerDiv.addEventListener("mouseout", changeGreen);
+
+function changeRed(){
+    innerDiv.style.backgroundColor = "red";
+}
+function changeGreen(){
+    innerDiv.style.backgroundColor = "green";
+}
+
+innerDiv.addEventListener("click", changeBlue);
+outerDiv.addEventListener("click", changeBlue);
+
+function changeBlue(){
+    alert(`You selected ${this.id}`);
+    this.style.backgroundColor = "lightblue";
+}
+
+const myBtn2 = document.querySelector("#myBtn2");
+const myImg = document.querySelector("#myImg");
+myBtn2.addEventListener("click", () => {
+    console.log(myImg.style.visibility);
+    if(myImg.style.visibility == "hidden"){
+        myImg.style.visibility = "visible";
+    } else {
+        myImg.style.visibility = "hidden";
+    }
+})
+
+//window.addEventListener("keydown", event => console.log(event.key));
+
+const myDiv = document.getElementById("myDiv");
+window.addEventListener("keydown", move);
+let x1 = 0;
+let y1 = 0;
+function move(event){
+    switch(event.key){
+        case "ArrowDown":
+            y1+=5;
+            myDiv.style.top = y1 + "px";
+            break;
+        case "ArrowUp":
+            y1-=5;
+            myDiv.style.top = y1 + "px";
+            break;
+        case "ArrowRight":
+            x1+=5;
+            myDiv.style.left = x1 + "px";
+            break;
+        case "ArrowLeft":
+            x1-=5;
+            myDiv.style.left = x1 + "px";
+            break;
+        default:
+            break;
+    }
+}
+
+const myButton3 = document.getElementById("myBtn3");
+const myAnimation = document.getElementById("myDiv3");
+
+myButton3.addEventListener("click", begin);
+
+function begin(){
+    let timerId = null;
+    // let x = 0;
+    // let y = 0;
+    // let degrees = 0;
+    let scaleX = 1;
+    let scaleY = 1;
+
+    timerId = setInterval(frame, 5);
+
+    function frame(){
+        // if(x >= 200 || y >= 200){
+        //     clearInterval(timerId);
+        // } else {
+        //     x+=1;
+        //     y+=1;
+        //     myAnimation.style.left = x + "px";
+        //     myAnimation.style.top = y + "px";
+        // }
+        // if(x >= 200 || y  >= 200){
+        //     // clearInterval(timerId);
+        // } else {
+        //     // degrees += 5;
+        //     // x+=1;
+        //     // y+=1;
+        //     // myAnimation.style.left = x + "px";
+        //     // myAnimation.style.top = y + "px";
+        //     // myAnimation.style.transform = "rotateZ("+degrees+"deg)";
+        // }
+        if(scaleX >= 2 || scaleY >= 2){
+            clearInterval(timerId);
+        } else {
+            scaleY += 0.01;
+            scaleX += 0.01;
+            myAnimation.style.transform = "scale(" +scaleX+","+scaleY+")";
+        }
+    }
+}
+
+let canvas = document.getElementById("myCanvas");
+let context = canvas.getContext("2d");
+
+//Draw lines:
+// context.strokeStyle = "purple";
+// context.lineWidth = 10;
+// context.beginPath();
+// context.moveTo(0,0);
+// context.lineTo(250,250);
+// context.lineTo(250,500);
+// context.moveTo(500,0);
+// context.lineTo(250,250);
+// context.stroke();
+
+//draw triangle
+// context.strokeStyle = "grey";
+// context.fillStyle = "yellow";
+// context.lineWidth = 10;
+// context.beginPath();
+// context.moveTo(250, 0);
+// context.lineTo(0,250);
+// context.lineTo(500,250);
+// context.lineTo(250,0);
+// context.stroke();
+// context.fill();
+
+//draw rectangle
+// context.fillStyle = "black";
+// context.fillRect(0,0,250,250);
+// context.strokeStyle = "black";
+// context.strokeRect(0,0,250,250);
+// context.fillStyle = "red";
+// context.fillRect(0,250,250,250);
+// context.strokeStyle = "black";
+// context.strokeRect(0,250,250,250);
+
+// context.fillStyle = "green";
+// context.fillRect(250,250,250,250);
+// context.strokeStyle = "black";
+// context.strokeRect(250,250,250,250);
+
+// context.fillStyle = "blue";
+// context.fillRect(250,0,250,250);
+// context.strokeStyle = "black";
+// context.strokeRect(250,0,250,250);
+
+//draw circle
+// context.fillStyle = "lightblue";
+// context.strokeStyle = "darkblue";
+// context.lineWidth = 10;
+// context.beginPath();
+// context.arc(250,250,200, 0, 2 * Math.PI);
+// context.fill();
+// context.stroke();
+
+//draw text
+context.font = "50px MV Boli"
+context.fillStyle = "grey";
+context.textAlign = "center";
+context.fillText("You win!", canvas.width / 2, canvas.height / 2);
+
+
