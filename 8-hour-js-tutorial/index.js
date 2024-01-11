@@ -1054,5 +1054,22 @@ title.style.textAlign = "center";
 title.style.border = "2px solid";
 title.style.display = "block";
 
+const elementbtn = document.getElementById("myBtn");
+// const elementbtn = document.body;
+elementbtn.onclick = doSth;
+// elementbtn.onload = doSth;
+const element3 = document.getElementById("myText");
+element3.onchange = doSth;
+function doSth(){
+    alert("You did sth");
+}
 
-
+const element4 = document.getElementById("mydiv");
+element4.onmouseover = dosth;
+element4.onmouseout = dosthelse;
+function dosth(){
+    element4.style.backgroundColor = "red";
+}
+function dosthelse(){
+    element4.style.backgroundColor = "lightgreen";
+}
