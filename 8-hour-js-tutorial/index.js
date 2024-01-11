@@ -1305,15 +1305,17 @@ function getCookie(name){
 const firstText = document.querySelector("#firstText");
 const lastText = document.querySelector("#lastText");
 const submitbtn = document.querySelector("#submitbtn");
-const cookiebtn = document.querySelector("#cookiebtn");
+const cookieBtn = document.getElementById("cookieBtn");
 
+deleteCookie("firstName");
+deleteCookie("lastName");
 submitbtn.addEventListener("click", () => {
     setCookie("firstName", firstText.value, 365);
     setCookie("lastName", lastText.value, 365);
 })
-cookiebtn.addEventListener("click", () => {
+cookieBtn.addEventListener("click", () => {
     firstText.value = getCookie("firstName");
     lastText.value = getCookie("lastName");
 })
-deleteCookie("firstName");
-deleteCookie("lastName");
+
+
