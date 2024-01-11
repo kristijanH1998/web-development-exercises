@@ -1242,4 +1242,78 @@ context.fillStyle = "grey";
 context.textAlign = "center";
 context.fillText("You win!", canvas.width / 2, canvas.height / 2);
 
+//console.dir(window);
+// console.log(window.innerWidth);
+// console.log(window.innerHeight);
 
+// console.log(window.scrollX);
+// console.log(window.scrollY);
+
+console.log(window.location.href);
+//window.location.href = "https://google.com";
+console.log(window.location.hostname);
+console.log(window.location.pathname);
+
+const mybtn = document.querySelector("#mybtn");
+mybtn.addEventListener("click", () => window.open("https://google.com"));
+mybtn.addEventListener("click", () => window.print());
+// window.alert("Hello!");
+// window.confirm("Press OK to continue");
+// let age = window.prompt("Enter your age");
+// if (age < 18) {
+//     window.alert("You must be 18+ to visit this site.");
+//     window.close();
+// }
+
+// console.log(navigator.cookieEnabled);
+// document.cookie = "firstName=Kristijan; expires=Sun, 1 January 2030 12:00:00 UTC; path=/";
+// document.cookie = "lastName=Hornung; expires=Sun, 1 January 2000 12:00:00 UTC; path=/";
+// console.log(document.cookie);
+
+//setCookie("email", "kristijan@gmail.com", 365);
+//deleteCookie("email");
+//console.log(document.cookie);
+// setCookie("firstName", "Kiki", 365);
+// setCookie("lastName", "H", 365);
+// console.log(getCookie("firstName"));
+// console.log(getCookie("lastName"));
+
+function setCookie(name, value, daysToLive){
+    const date = new Date();
+    date.setTime(date.getTime() + (daysToLive * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + date.toUTCString();
+    document.cookie = `${name}=${value}; ${expires}; path=/`;
+}
+
+function deleteCookie (name){
+    setCookie(name, null, null);
+}
+
+function getCookie(name){
+    const cDecoded = decodeURIComponent(document.cookie);
+    const cArray = cDecoded.split("; ");
+    let result = null;
+    console.log(cArray);
+    cArray.forEach(element => {
+        if(element.indexOf(name) == 0){
+            result = element.substring(name.length + 1);
+        }
+    })
+    return result;
+}
+
+const firstText = document.querySelector("#firstText");
+const lastText = document.querySelector("#lastText");
+const submitbtn = document.querySelector("#submitbtn");
+const cookiebtn = document.querySelector("#cookiebtn");
+
+submitbtn.addEventListener("click", () => {
+    setCookie("firstName", firstText.value, 365);
+    setCookie("lastName", lastText.value, 365);
+})
+cookiebtn.addEventListener("click", () => {
+    firstText.value = getCookie("firstName");
+    lastText.value = getCookie("lastName");
+})
+deleteCookie("firstName");
+deleteCookie("lastName");
