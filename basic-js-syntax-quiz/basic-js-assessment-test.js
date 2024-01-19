@@ -84,10 +84,10 @@ variablesExample(15);
 //Question 5: 
 
 // Part-1: What are acceptable characters that you can use to start variable names?
-//Answer: lowercase and uppercase letter characters, underscore, $ sign
+//Answer: lowercase and uppercase letter characters, underscore, '$' sign
 
 //Part-2: What are acceptable characters that you can use to name variables (after the first character of the name)?
-// Answer: lowercase and uppercase letters, integers from 0 to 9, underscore, $ sign
+// Answer: lowercase and uppercase letters, integers from 0 to 9, underscore, '$' sign
 
 /* END OF VARIABLES AND STRINGS SECTION */
 
@@ -128,14 +128,21 @@ console.log(namesArray["The first name is: ", 0]);
 
 /*directly below this comment, 
 write a for loop that iterates over the namesArray from the beginning to the end of the array and logs the names to the console */
-
+for(let i = 0; i < namesArray.length; i++){
+    console.log(namesArray[i]);
+}
 
 //write a for loop that iterates over the namesArray from the END to the BEGINnING of the array and logs the names to the console
-
+for(let i = namesArray.length - 1; i >= 0; i--){
+    console.log(namesArray[i]);
+}
 
 //write a for loop that iterates over the namesArray BUT only logs every other name to the console
-
-
+for(let i = 0; i < namesArray.length; i++){
+    if (i % 2 == 0){
+        console.log(namesArray[i]);
+    }
+}
 
 /*While Loops*/
 
@@ -143,41 +150,60 @@ write a for loop that iterates over the namesArray from the beginning to the end
 
 function whileLoopQuestion1(number){
     let continueBoolean = true;
-    console.log("Hello World")
+    while(continueBoolean){
+        console.log("Hello World");
+        number--;
+        if(number == 0){
+            continueBoolean = false;
+        }
+    } 
 }
-
 whileLoopQuestion1(20);
 
 
 /* Array Methods */
 
 //What does the Array.prototype.push() method do? What does it return?
+//It pushes a new element sent to it to the end of the array it is applied to. It returns new array's length.
 
 //What does the Array.prototype.unshift() method do? What does it return?
+//It appends a new element to the start of the array it is applied to. It returns that element's value. 
 
 //What does the Array.prototype.pop() method do? What does it return?
+//It removes the last element in the array, and returns the removed element.
 
 //What does the Array.prototype.shift() method do? What does it return?
+//It removes the first element in the array, and returns that element.
 
 // What does the Array.prototype.join() method do? What does the 1 optional parameter do to modify how this method works? What does it return?
+//It takes all the elements from the array it is applied to and places them in the original order in a new string. The one optional parameter passed to it
+//places the value of that parameter in between each pair of elements from the original array into the new string. It returns the new string
+//thus created.
 
 //What does the Array.prototype.slice() method do? What will it return?
+//It cuts out a portion of the original array and returns that new portion of elements as a new array. It does not modify the original
+//array.
 
 //What does the Array.prototype.splice() method do? What will it return?
-
+//It removes elements from or adds new elements to the array it is applied to. It modifies the original array and returns it.
 
 //Look at the Array Below
 let nestedArray = [ [1,2,3], [4,5,6], [7,8,9], [[10,11,12],[13,14,15],[16,17,18]], 19];
 //How many dimensions does this array have?
+//3
 
 //How would you access the value 11?
+nestedArray[3][0][1];
 
 // how would you access the value 5?
+nestedArray[1][1];
 
 // How would you access the last element in the array without knowing the array's length?
+nestedArray.reverse()[0];
 
 // How would you access the 3rd element in the array?  What will that element's value be?
-
+nestedArray[2];
+//the elements value is [7,8,9]
 
 /* Functions */
 
@@ -191,5 +217,9 @@ The parameter should be named celsius.
 Your function needs to accept an argument of a temperature in Celsius, and return the equivalent temperature in Fahrenheit
 Use the formula mentioned above to help convert the Celsius temperature to Fahrenheit.
 convertCtoF(30); should return 86;
-
 */
+function convertCtoF (celsius) {
+    return celsius * (9/5) + 32;
+}
+//test:
+console.log(convertCtoF(30));
