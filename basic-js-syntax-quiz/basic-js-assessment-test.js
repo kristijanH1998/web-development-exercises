@@ -4,6 +4,7 @@
 //Question 1: There are 8 Primitive Data Types in JavaScript, list them all 
 //Note: Arrays and Objects are not primitive data-types
 //Answer: string, number, BigInt, symbol, boolean, undefined, null
+//boolean, BigInt, number, undefined, NaN, null, string, symbol
 
 //Question 2: Is JavaScript a dynamically typed Language? or a Statically typed language?
 //Answer: dynamically typed language
@@ -12,15 +13,18 @@
 // Part 1 - What 2 types of scope can variables declared with the "var" keyword have?
 //Answer: global scope (declared outside of any block of code) or local scope (declared inside a block
 //of code such as a function, a foor loop, etc.)
+//global and local/function scope
+
 
 //Part 2 - As of ES6 JavaScript has 2 new variable declaration keywords: "let" and "const".  
 //How are let and const variables scoped?
-//Answer: globally scoped (visible throughout the entire program)
+//Answer: //block scoped {block of code}
 
 //Part 3 - What is the difference between "let" and "const"? Hint: it has to do with variable reassignment
 //Answer: Declaration with 'const' makes a variable not reassignable (we cannot assign it a different value 
 //once it has been declared with 'const' and initialized with some value). Declaration with 'let' allows for
 //the variable to be reassigned with a different value after it has been declared and initialized.
+//new answer: let = reassign value, const = immutable
 
 
 //Question 4:
