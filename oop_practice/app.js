@@ -66,3 +66,5 @@ aPrius.colorAndPrice();
 
 const aCorolla = new Corolla(100000, 5000);
 aCorolla.mileageAndPrice();
+
+aCorolla.slogan();
