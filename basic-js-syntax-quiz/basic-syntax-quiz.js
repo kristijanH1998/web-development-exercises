@@ -84,3 +84,12 @@ push, pop, shift, unshift
 
 // Answer 1
 //
+function divisibleTimes (num1, num2) {
+    let times = 0;
+    while(num1 % num2 === 0) {
+        times++;
+        num1 /= num2;
+    }
+    return times;
+}
+console.log(divisibleTimes(24,2));
