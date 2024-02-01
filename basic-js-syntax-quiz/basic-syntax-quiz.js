@@ -1,6 +1,6 @@
 /*
 # 1. Name at least three of the primitive data types in Javascript.  Bonus Points if you can name all 8.
-string, number, null, undefined, symbol, boolean, 
+string, number, null, undefined, symbol, boolean, NaN
 
 # 2. Name one non-primitive data type.
 Object
