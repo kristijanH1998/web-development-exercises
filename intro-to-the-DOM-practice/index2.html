@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="generateTable()">generate</button>
+    <div id="table-container"></div>
+       
+       <script>
+            function generateTable(containerID="table-container",numRows=10,numCells=10){
+                let container = document.getElementById(containerID);
+                let table = document.createElement("table")
+            
+                container.appendChild(table);
+            
+                for(let rowIndex = 0; rowIndex < numRows; rowIndex++){
+                    var row = table.insertRow(-1);
+                    for (var cellIndex = 0; cellIndex < numCells; cellIndex++) {
+                        let cell = row.insertCell(-1);
+                        let text = 'Row ' + row.rowIndex + ' Cell ' + cellIndex;
+                        cell.appendChild(document.createTextNode(text));
+                    }
+                }
+            }
+       </script>
+</body>
+</html>
+
+
+
+
+
+
+
