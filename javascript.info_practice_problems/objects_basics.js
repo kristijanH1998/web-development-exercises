@@ -55,3 +55,48 @@ let menu =  {
 };
 multiplyNumeric(menu);
 console.log(menu);
+
+//Using 'this' in object literal
+function makeUser() {
+    return {
+        name: 'John',
+        ref: this
+    };
+}
+let user2 = makeUser();
+console.log(user2.ref.name); //outputs an error
+
+//Calculator
+let calculator = {
+    read() {
+        this.a = +prompt("a?", 0);
+        this.b = +prompt("b?", 0);
+    },
+    sum() {
+        return this.a + this.b;
+    },
+    mul(){
+        return this.a * this.b;
+    }
+};
+// calculator.read();
+// console.log(calculator.sum());
+// console.log(calculator.mul());
+
+//Chaining
+let ladder = {
+    step: 0,
+    up() {
+        this.step++;
+        return this;
+    },
+    down(){
+        this.step--;
+        return this;
+    },
+    showStep: function(){
+        console.log(this.step);
+        return this;
+    }
+}
+ladder.up().down().up().showStep();
