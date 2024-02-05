@@ -259,5 +259,18 @@ alert( speedy.stomach ); // apple
 alert( lazy.stomach ); // <nothing>
 */
 
+//Changing prototype
+function Rabbit(){}
+Rabbit.prototype = {
+    eats: true
+};
+let rabbit3 = new Rabbit();
+//Rabbit.prototype.eats = false;
+delete Rabbit.prototype.eats;
+console.log(rabbit3.eats); //undefined
+
+//Create an object with the same constructor
+let obj2 = new obj.constructor();
+console.log(obj2);
 
 
