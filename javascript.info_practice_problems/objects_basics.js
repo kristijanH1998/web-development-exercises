@@ -273,4 +273,39 @@ console.log(rabbit3.eats); //undefined
 let obj2 = new obj.constructor();
 console.log(obj2);
 
+//Add method "f.defer(ms)" to functions
+function f(){
+    console.log("Hello");
+}
+function f2(){
+    console.log("Hello2");
+}
+f.__proto__.defer = function(time){
+    setTimeout(this, time);
+}
+/*Also works: 
+Function.prototype.defer = function(ms) {
+  setTimeout(this, ms);
+};
+*/
+// f.defer(2000);
+// f2.defer(4000);
+//Add the decorating "defer()" to functions
+function f3(a,b){
+    console.log(a + b);
+};
+Function.prototype.defer = function(ms){
+    let f = this;
+    // console.log(this);
+    // console.log(f);
+    return function(...args){
+        console.log(this);
+        setTimeout(() => f.apply(null, args), ms); //'setTimeout(() => f.apply(this, args), ms);' also works
+    }
+};
+f3.defer(1000)(5,7);
+
+
+
+
 
