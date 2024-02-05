@@ -134,7 +134,130 @@ function Accumulator(startingValue) {
         this.value += +prompt("new number?", 0);
     }
 }
-let accumulator = new Accumulator(1);
-accumulator.read();
-accumulator.read();
-console.log(accumulator.value);
+// let accumulator = new Accumulator(1);
+// accumulator.read();
+// accumulator.read();
+// console.log(accumulator.value);
+
+//Working with prototype
+let animal = {
+    jumps: null
+};
+let rabbit = {
+    __proto__: animal,
+    jumps: true
+};
+
+console.log(rabbit.jumps); //prints 'true'
+delete rabbit.jumps;
+console.log(rabbit.jumps); //prints 'null'
+delete animal.jumps;
+console.log(rabbit.jumps); //prints 'undefined'
+
+//Searching algorithm
+let head = {
+    glasses: 1
+};
+let table = {
+    pen: 3,
+    __proto__: head
+};
+let bed = {
+    sheet: 1,
+    pillow: 2,
+    __proto__: table
+};
+let pockets = {
+    money: 2000,
+    __proto__: bed
+};
+console.log(pockets.glasses);
+console.log(pockets.pen);
+console.log(bed.glasses);
+
+//it takes the same amount of time to get 'glasses' value as head.glasses and as pockets.glasses
+
+//Where does it write?
+let animal2 = {
+    eat() {
+        this.full = true;
+    }
+};
+let rabbit2 = {
+    __proto__: animal2
+};
+
+rabbit2.eat(); //the rabbit2 object will receive the property 'full'
+console.log(animal2.full); //undefined because eat() hasn't been called from animal2
+console.log(rabbit2.full); //true, applies to the rabbit2 object even though this property was created by calling eat() method of animal2
+//The method rabbit2.eat is first found in the prototype(animal2), then executed with this=rabbit2.
+
+//Why are both hamsters full?
+let hamster = {
+    stomach: [],
+
+    eat(food) {
+        this.stomach.push(food);
+    }
+};
+let speedy = {
+    __proto__: hamster
+}
+let lazy = {
+    __proto__: hamster
+}
+//This one found the food
+speedy.eat("apple");
+console.log(speedy.stomach); //outputs an array containing 'apple'
+//This one also has it, why? fix please.
+console.log(lazy.stomach);
+//the fix is to add 'stomach: []' property/value pair to speedy and lazy.
+//'this' in 'hamster' refers to the hamster object because speedy and lazy objects
+//don't have 'stomach' property declared
+let hamster2 = {
+    eat(food) {
+        this.stomach.push(food);
+    }
+};
+let speedy2 = {
+    stomach: [],
+    __proto__: hamster
+}
+let lazy2 = {
+    stomach: [],
+    __proto__: hamster
+}
+speedy2.eat("apple");
+console.log(speedy2.stomach);
+console.log(lazy2.stomach); //now shows empty 'stomach' array
+//Both for lazy.stomach.push(...) and speedy.stomach.push(), the property stomach is found in the prototype (as it’s not in the object itself('lazy' object or 'speedy' object)), then the new data is pushed into it.
+
+//another fix:
+/*
+let hamster = {
+  stomach: [],
+
+  eat(food) {
+    // assign to this.stomach instead of this.stomach.push
+    this.stomach = [food];
+  }
+};
+
+let speedy = {
+   __proto__: hamster
+};
+
+let lazy = {
+  __proto__: hamster
+};
+
+// Speedy one found the food
+speedy.eat("apple");
+alert( speedy.stomach ); // apple
+
+// Lazy one's stomach is empty
+alert( lazy.stomach ); // <nothing>
+*/
+
+
+
