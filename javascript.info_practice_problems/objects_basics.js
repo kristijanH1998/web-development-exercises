@@ -296,14 +296,20 @@ function f3(a,b){
 };
 Function.prototype.defer = function(ms){
     let f = this;
-    // console.log(this);
-    // console.log(f);
+    console.log(this);
+    console.log(f);
     return function(...args){
         console.log(this);
         setTimeout(() => f.apply(null, args), ms); //'setTimeout(() => f.apply(this, args), ms);' also works
     }
 };
-f3.defer(1000)(5,7);
+//The approach below won't work because arrow functions lack their own context (lexical binding issue); they use the surrounding scope as the scope for 'this', which is the whole index.html in this case, not f3 or any other calling function
+// Function.prototype.defer = ms => (...args) => {
+//     let f = this;
+//     console.log(this);
+//     (setTimeout(() => f3.apply(null, args), ms));
+// };
+// f3.defer(1000)(5,7);
 
 
 
