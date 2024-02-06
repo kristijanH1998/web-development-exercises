@@ -309,7 +309,8 @@ Function.prototype.defer = function(ms){
 //     console.log(this);
 //     (setTimeout(() => f3.apply(null, args), ms));
 // };
-f3.defer(1000)(5,7);
+
+//f3.defer(1000)(5,7);
 
 function f5 (ms){
     return function(...args1){
@@ -332,6 +333,34 @@ function d() {
   }
 d()()();
 
+//Add toString to the dictionary
+let dictionary = Object.create(null, {
+    toString: {
+        value(){
+            return Object.keys(this);
+        }
+    }
+});
 
+dictionary.apple = "Apple";
+dictionary.__proto__ = "test";
 
+for(let key in dictionary) {
+    console.log(key);
+}
+console.log(dictionary);
+console.log(dictionary.toString());
 
+//The difference between calls           
+function Rabbit(name){
+    this.name = name;
+}
+Rabbit.prototype.sayHi = function() {
+    console.log(this.name);
+};
+let rabbit4 = new Rabbit("Rabbit");
+
+rabbit4.sayHi(); //prints 'Rabbit'; this==rabbit4
+Rabbit.prototype.sayHi(); //undefined; this==Rabbit.prototype
+Object.getPrototypeOf(rabbit4).sayHi(); //undefined; this==Rabbit.prototype
+rabbit4.__proto__.sayHi(); //undefined; this==Rabbit.prototype
