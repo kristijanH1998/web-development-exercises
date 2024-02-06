@@ -309,8 +309,28 @@ Function.prototype.defer = function(ms){
 //     console.log(this);
 //     (setTimeout(() => f3.apply(null, args), ms));
 // };
-// f3.defer(1000)(5,7);
+f3.defer(1000)(5,7);
 
+function f5 (ms){
+    return function(...args1){
+        // setTimeout(() => {
+        //     console.log(args1.reduce((temp, a1) => temp + a1, 0));
+        // }, ms);
+        //let sum1 = args1.reduce((temp, a1) => temp + a1, 0);
+        return function(...args2){
+            return args2.reduce((temp2, a2) => temp2 + a2, 0);
+        }
+    }    
+}
+console.log(f5(3000)(1,2,3,4,5)(1,2));
+function d() {
+    return function e() {
+      return function f(){
+        //alert('F');
+      }
+    }
+  }
+d()()();
 
 
 
