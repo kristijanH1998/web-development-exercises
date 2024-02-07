@@ -528,3 +528,16 @@ console.log(Rabbit3.prototype.__proto__);
 alert( Rabbit.prototype.__proto__ === Object.prototype ); // (1) true
 alert( Rabbit.__proto__ === Object ); // (2) true
 */
+
+//Strange instanceof
+function A() {}
+function B() {}
+A.prototype = B.prototype = {};
+let a2 = new A();
+console.log(a2 instanceof B); //prints 'true' because the same empty object is set as a prototype of both A and B in line 535; 
+//therefore instanceof goes up the prototype chain and encounters that common prototype of A and B
+console.log(a2.__proto__);
+console.log(a2.prototype);
+console.log(A.prototype);
+console.log(A.prototype === B.prototype);
+console.log(a2.__proto__ === B.prototype)
