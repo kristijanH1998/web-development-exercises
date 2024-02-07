@@ -438,4 +438,93 @@ class Clock {
     }
 }
 let clock2 = new Clock({template: 'h:m:s'});
-clock2.start();
+//clock2.start();
+
+//Error creating an instance
+class Animal2 {
+    constructor(name){
+        this.name = name;
+    }
+}
+class Rabbit2 extends Animal2 {
+    constructor(name){
+        super(name); //statement that was missing
+        this.name = name;
+        this.created = Date.now();
+    }
+}
+let rabbit5 = new Rabbit2("White Rabbit");
+console.log(rabbit5.name);
+
+class Clock2 {
+  constructor({ template }) {
+    this.template = template;
+  }
+
+  render() {
+    let date = new Date();
+
+    let hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+
+    let mins = date.getMinutes();
+    if (mins < 10) mins = '0' + mins;
+
+    let secs = date.getSeconds();
+    if (secs < 10) secs = '0' + secs;
+
+    let output = this.template
+      .replace('h', hours)
+      .replace('m', mins)
+      .replace('s', secs);
+
+    console.log(output);
+  }
+
+  stop() {
+    clearInterval(this.timer);
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), 1000);
+  }
+}
+
+class ExtendedClock extends Clock2 {
+   constructor(options) {
+    super(options);
+    let { precision = 1000 } = options;
+    this.precision = precision;
+    //above two lines can also look like this:
+    //
+    //this.precision = 1000;
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), this.precision);
+  }
+}
+let myClock = new ExtendedClock({template: 'h:m:s'});
+//myClock.start();
+
+//Class extends Object?
+class Rabbit3 extends Object {
+    constructor(name){
+        //we must call parent constructor with 'super()' before using 'this'
+        super();
+        this.name = name;
+    }
+}
+let rabbit6 = new Rabbit3("Rab");
+//hasOwnProperty method is from Object.prototype
+console.log(rabbit6.hasOwnProperty('name'));
+console.log(Rabbit3.prototype);
+console.log(Rabbit3.__proto__);
+console.log(Rabbit3.prototype.__proto__);
+
+/*
+alert( Rabbit.prototype.__proto__ === Object.prototype ); // (1) true
+alert( Rabbit.__proto__ === Object ); // (2) true
+*/
