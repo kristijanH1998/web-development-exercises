@@ -139,3 +139,160 @@ console.log(person1.fullName);
 console.log(person1);
 
 //6.Getters and Setters With defineProperty()
+//a)Constructor function
+function Person2(firstName, lastName) {
+    this._firstName = firstName;
+    this._lastName = lastName;
+    Object.defineProperty(this, 'firstName', {
+        get: function(){
+            return this.capitalizeFirst(this._firstName);
+        },
+        set: function(value) {
+            this._firstName = value;
+        }
+    });
+    Object.defineProperty(this, 'lastName', {
+        get: function(){
+            return this.capitalizeFirst(this._lastName);
+        },
+        set: function(value) {
+            this._lastName = value;
+        }
+    });
+    Object.defineProperty(this, 'fullName', {
+        get: function(){
+            return this.firstName + ' ' + this.lastName;
+        }
+    });
+}
+Person2.prototype.capitalizeFirst = function(value) {
+    return value.charAt(0).toUpperCase() + value.slice(1);
+}
+const person2 = new Person2('john', 'doe');
+console.log(person2.firstName);
+console.log(person2.lastName);
+console.log(person2.fullName);
+
+//b) Object Literal
+const PersonObj = {
+    _firstName: 'jane',
+    _lastName: 'doe',
+    
+    get firstName() {
+        return Person.prototype.capitalizeFirst(this._firstName);
+    },
+    set firstName(value) {
+        this._firstName = value;
+    },
+    get lastName() {
+        return Person.prototype.capitalizeFirst(this._lastName);
+    },
+    set lastName(value) {
+        this._lastName = value;
+    }, 
+    get fullName() {
+        return this.firstName + ' ' + this.lastName;
+    }
+}
+
+const person3 = Object.create(PersonObj);
+console.log(person3.firstName);
+console.log(person3.lastName);
+console.log(person3.fullName);
+
+//Private Properties Convention
+class Wallet {
+    #balance = 0;
+    #transactions = [];
+    // constructor() {
+    //     this._balance = 0;
+    //     this._transactions = [];
+    // }
+
+    deposit(amount) {
+        this.#processDeposit(amount);
+        this.#balance += amount;
+    }
+    withdraw(amount) {
+        if(amount > this.#balance) {
+            console.log("Not enough funds");
+            return;
+        }
+        this.#processWithdraw(amount);
+        this.#balance -= amount;
+    }
+
+    #processDeposit(amount) {
+        console.log(`Depositing ${amount}`);
+        this.#transactions.push ({
+            type: 'deposit',
+            amount
+        })
+    }
+    #processWithdraw(amount) {
+        console.log(`Withdrawing ${amount}`);
+        this.#transactions.push ({
+            type: 'withdraw',
+            amount
+        })
+    }
+    get balance() {
+        return this.#balance;
+    }
+    get transactions() {
+        return this.#transactions;
+    }
+}
+ const wallet = new Wallet();
+ wallet.deposit(500);
+ wallet.withdraw(100);
+// wallet.deposit(300);
+// wallet.withdraw(50);
+// console.log(wallet.balance);
+// console.log(wallet.transactions);
+
+//ES2022 Class Fields
+console.log(wallet.balance);
+
+//Property Flags and Descriptors
+/*[[Configurable]] - if 'true', the property can be deleted and these
+attributes can be modified, otherwise not
+[[Enumerable]] - if 'true', the property will be returned in a
+'for..in' loop, otherwise not
+[[Writable]] - if 'true', the value of the property can be changed.
+otherwise not
+[[Value]] - the value of the property
+*/
+
+Math.PI = 4;
+console.log(Math.PI);
+
+// let descriptor = Object.getOwnPropertyDescriptor(Math, 'PI');
+// console.log(descriptor);
+
+const rectObj = {
+    name: 'Rectangle 1',
+    width: 10,
+    height: 10,
+};
+//console.log(descriptor);
+
+Object.defineProperty(rectObj, 'name', {
+    writable: false,
+    configurable: false,
+    enumerable: false
+});
+let descriptor = Object.getOwnPropertyDescriptor(rectObj, 'name');
+console.log(descriptor);
+
+rectObj.name = 'New name';
+delete rectObj.name;
+//delete rectObj.width;
+console.log(rectObj);
+
+for(let [key, value] of Object.entries(rectObj)) {
+    console.log(`${key}: ${value}`); //'name' won't show because its enumerable property is set to false
+}
+
+console.log(Object.getOwnPropertyDescriptors(rectObj));
+
