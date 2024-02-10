@@ -296,3 +296,43 @@ for(let [key, value] of Object.entries(rectObj)) {
 
 console.log(Object.getOwnPropertyDescriptors(rectObj));
 
+//Freezing and Sealing Properties
+
+//Sealing - prevents properties from being added or removed. Can still be changed.
+//Freezing-prevents properties from being added, removed, or changed
+
+const rectObj2 = {
+    name: 'Rectangle 1',
+    width: 10,
+    height: 10
+}
+
+Object.seal(rectObj2);
+let descriptors = Object.getOwnPropertyDescriptors(rectObj2);
+rectObj2.color = 'red';
+delete rectObj2.name;
+rectObj2.width = 20;
+console.log(descriptors);
+console.log(rectObj2);
+
+const circleObj = {
+    name: 'Circle 1',
+    radius: 30
+}
+Object.freeze(circleObj)
+descriptors = Object.getOwnPropertyDescriptors(circleObj);
+
+circleObj.color = 'blue';
+delete circleObj.name;
+circleObj.name = 'New Name';
+console.log(descriptors);
+
+console.log('rectObj is sealed?', Object.isSealed(rectObj2));
+console.log('rectObj is frozen?', Object.isFrozen(rectObj2));
+console.log('circleObj is sealed?', Object.isSealed(circleObj));
+console.log('circleObj is frozen?', Object.isFrozen(circleObj));
+
+
+
+
+
