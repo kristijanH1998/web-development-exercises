@@ -55,3 +55,62 @@ function destroyer(arr, ...args) {
   console.log(destroyer(["tree", "hamburger", 53], "tree", 53));
   console.log(destroyer([3, 5, 1, 2, 2], 2, 3, 5));
   console.log(destroyer(["possum", "trollo", 12, "safari", "hotdog", 92, 65, "grandma", "bugati", "trojan", "yacht"], "yacht", "possum", "trollo", "safari", "hotdog", "grandma", "bugati", "trojan"));
+
+// Wherefore art thou
+// Make a function that looks through an array of objects (first argument) and returns an array of all objects that have matching name and value pairs (second argument). Each name and value pair of the source object has to be present in the object from the collection if it is to be included in the returned array.
+// For example, if the first argument is [{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], and the second argument is { last: "Capulet" }, then you must return the third object from the array (the first argument), because it contains the name and its value, that was passed on as the second argument.
+
+function whatIsInAName(collection, source) {
+  let result = [];
+  let match = true;
+  for(let obj of collection){
+    Object.getOwnPropertyNames(source).forEach(property => {
+      if(!((property in obj) && (obj[property] == source[property]))){
+        match = false;
+      } 
+    });
+    if(match){
+      result.push(obj);
+    }
+    match = true; 
+  }
+  return result;
+}
+
+console.log(whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }));
+console.log(whatIsInAName([{ "apple": 1 }, { "apple": 1 }, { "apple": 1, "bat": 2 }], { "apple": 1 }));
+console.log(whatIsInAName([{ "apple": 1, "bat": 2 }, { "bat": 2 }, { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, "bat": 2 }));
+
+//Spinal Tap Case
+//Convert a string to spinal case. Spinal case is all-lowercase-words-joined-by-dashes.
+function spinalCase(str) {
+  let arr = str.split("");
+  let tempArr = [];
+
+  for(let i = 0; i < arr.length; i++){
+    if(/^[A-Za-z0-9]*$/.test(arr[i])){
+      if((!i == 0) && arr[i] == arr[i].toUpperCase()){
+        if(tempArr.at(tempArr.length-1) !== '-'){
+          tempArr.push('-');
+        }
+      }
+      tempArr.push(arr[i].toLowerCase());
+    } else {
+      if(tempArr.at(tempArr.length-1) !== '-'){
+        tempArr.push('-');
+      }
+      while(!(/^[A-Za-z0-9]*$/.test(arr[i]))){
+        i++;
+      }
+      i--;
+    }
+  }  
+  str = tempArr.join("");
+  return str;
+}
+
+console.log(spinalCase('This Is Spinal Tap'));
+console.log(spinalCase('thisIsSpinalTap'));
+console.log(spinalCase('The_Andy_Griffith_Show'));
+console.log(spinalCase("Teletubbies say Eh-oh"));
+console.log(spinalCase("AllThe-small Things"));
